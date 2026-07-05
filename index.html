@@ -29,6 +29,16 @@ html{scroll-behavior:smooth;scroll-padding-top:76px}
 body{font-family:'Inter',system-ui,sans-serif;font-size:1rem;line-height:1.6;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.05;text-wrap:balance}
 a{color:inherit;text-decoration:none}
+
+/* ---------- Intro overlay ----------
+   The opening sequence has a deliberate order: brand mark alone first, then
+   it clears to reveal a scene that's already mid-formation (blob + nav faded
+   in underneath) rather than everything popping in from a blank page at once. */
+.intro-overlay{position:fixed;inset:0;z-index:400;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .6s var(--ease),visibility .6s var(--ease)}
+.intro-overlay.hide{opacity:0;visibility:hidden;pointer-events:none}
+.intro-mark{font-family:'Inter',sans-serif;font-weight:600;font-size:1.6rem;color:var(--ink);letter-spacing:-.02em;opacity:0;animation:introPulse 1s var(--ease) both}
+.intro-mark i{font-style:normal;color:var(--accent)}
+@keyframes introPulse{0%{opacity:0;transform:scale(.9)}65%{opacity:1;transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}
 .wrap{max-width:1180px;margin-inline:auto;padding-inline:28px}
 .skip-link{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--bg);padding:.6rem 1rem;z-index:300}
 .skip-link:focus{left:12px;top:12px}
@@ -115,8 +125,8 @@ section{scroll-margin-top:76px;position:relative}
    the blob's glow is meant to bleed around the letters, not behind a solid box. */
 .hero-h1{font-family:'Inter',sans-serif;font-weight:600;line-height:.92;letter-spacing:-.03em}
 .word-in{display:block;opacity:0;filter:blur(10px);transform:translateY(30px);animation:lineIn 1.1s var(--ease) both}
-.word-in.w1{font-size:clamp(2.6rem,7vw,5rem);color:var(--ink-2);margin-left:2vw;animation-delay:.15s}
-.word-in.w2{font-size:clamp(3.4rem,11vw,8.5rem);color:var(--ink);margin-left:22vw;animation-delay:.4s}
+.word-in.w1{font-size:clamp(2.6rem,7vw,5rem);color:var(--ink-2);margin-left:2vw;animation-delay:.8s}
+.word-in.w2{font-size:clamp(3.4rem,11vw,8.5rem);color:var(--ink);margin-left:22vw;animation-delay:1.05s}
 @keyframes lineIn{to{opacity:1;filter:blur(0);transform:translateY(0)}}
 
 .hero-note{position:absolute;top:110px;left:28px;z-index:1;font-size:.86rem;color:var(--ink-2);max-width:26ch;line-height:1.5}
@@ -277,6 +287,10 @@ body.menu-open{overflow:hidden}
 </svg>
 <a class="skip-link" href="#main">Skip to content</a>
 
+<div class="intro-overlay" id="introOverlay" aria-hidden="true">
+  <span class="intro-mark">Processa<i>.</i></span>
+</div>
+
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="nav-brand" href="#top"><span class="nav-brand-icon" aria-hidden="true"></span><span class="wordmark">Processa</span></a>
@@ -306,11 +320,11 @@ body.menu-open{overflow:hidden}
   <section class="hero" id="top">
     <div class="liquid-layer" aria-hidden="true"><span class="liquid liquid-orange"><i class="orb o1" aria-hidden="true"></i><i class="orb o2" aria-hidden="true"></i><i class="orb o3" aria-hidden="true"></i><i class="orb o4" aria-hidden="true"></i><i class="glint" aria-hidden="true"></i></span></div>
 
-    <p class="hero-note reveal">we build sites that guard every enquiry<br>with utmost care, empowering your business<br>with automation everywhere</p>
+    <p class="hero-note reveal" style="transition-delay:.7s">we build sites that guard every enquiry<br>with utmost care, empowering your business<br>with automation everywhere</p>
 
-    <div class="stat-float sf-1 reveal d1"><span class="stat-num">100<em>%</em></span><span class="stat-lbl">custom-coded<br>zero page builders</span></div>
-    <div class="stat-float sf-2 reveal d2"><span class="stat-num">0</span><span class="stat-lbl">trackers or ads<br>by default</span></div>
-    <div class="stat-float sf-3 reveal d3"><span class="stat-num">1<em>:1</em></span><span class="stat-lbl">developer, always<br>direct contact</span></div>
+    <div class="stat-float sf-1 reveal" style="transition-delay:1.4s"><span class="stat-num">100<em>%</em></span><span class="stat-lbl">custom-coded<br>zero page builders</span></div>
+    <div class="stat-float sf-2 reveal" style="transition-delay:1.55s"><span class="stat-num">0</span><span class="stat-lbl">trackers or ads<br>by default</span></div>
+    <div class="stat-float sf-3 reveal" style="transition-delay:1.7s"><span class="stat-num">1<em>:1</em></span><span class="stat-lbl">developer, always<br>direct contact</span></div>
 
     <div class="wrap hero-grid">
       <h1 class="hero-h1">
@@ -319,9 +333,9 @@ body.menu-open{overflow:hidden}
       </h1>
     </div>
 
-    <p class="hero-mid-copy reveal d2">Working with a developer who treats every enquiry like it matters means fewer missed bookings, faster replies, and a site that earns its keep.</p>
+    <p class="hero-mid-copy reveal" style="transition-delay:1.5s">Working with a developer who treats every enquiry like it matters means fewer missed bookings, faster replies, and a site that earns its keep.</p>
 
-    <div class="hero-float-pill reveal d3">
+    <div class="hero-float-pill reveal" style="transition-delay:1.9s">
       <span class="pill-status">available for new projects</span>
       <a href="#contact" class="btn btn-sm">start a project</a>
     </div>
@@ -532,6 +546,17 @@ body.menu-open{overflow:hidden}
 (function(){
   'use strict';
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Opening sequence, step 1 of 5: brand mark alone, then clears to reveal
+     the hero (already mid-formation underneath) rather than a blank flash. */
+  var introOverlay = document.getElementById('introOverlay');
+  if(introOverlay){
+    var introHold = reduceMotion ? 0 : 700;
+    window.setTimeout(function(){
+      introOverlay.classList.add('hide');
+      window.setTimeout(function(){ introOverlay.remove(); }, reduceMotion ? 0 : 650);
+    }, introHold);
+  }
   var hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   /* Blobs respond to both the cursor (within their section) and scroll position
