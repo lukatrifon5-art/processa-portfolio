@@ -11,13 +11,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0A0714;
-  --surface:#140F22;
-  --surface-2:#1B1530;
+  --bg:#050505;
+  --surface:#111111;
+  --surface-2:#181818;
   --ink:#F5F3FA;
-  --ink-2:#A79FC0;
-  --line:rgba(245,243,250,.10);
-  --accent:#C084FC;
+  --ink-2:#9A9A9E;
+  --line:rgba(255,255,255,.08);
+  --accent:#FF7A3D;
   --accent-2:#5EEAD4;
   --ease:cubic-bezier(.16,1,.3,1);
 }
@@ -37,13 +37,15 @@ a{color:inherit;text-decoration:none}
 section{scroll-margin-top:76px;position:relative}
 
 /* ---------- Nav ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,7,20,.6);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
-.wordmark{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;text-decoration:none;color:var(--ink)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:18px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:54px}
+.nav-brand{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:999px;padding:.5rem 1.1rem .5rem .6rem}
+.nav-brand-icon{width:26px;height:26px;border-radius:50%;background:conic-gradient(from 140deg,#ff7a3d,#ff2d55,#3b82f6,#5eead4,#ff7a3d);flex-shrink:0}
+.wordmark{font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem;text-decoration:none;color:var(--ink);text-transform:lowercase}
 .wordmark::after{content:".";color:var(--accent)}
-.nav-links{display:flex;gap:30px;list-style:none}
-.nav-links a{font-size:.88rem;color:var(--ink-2);text-decoration:none;transition:color .2s ease}
-.nav-links a:hover{color:var(--ink)}
+.nav-links{display:flex;gap:8px;list-style:none;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:999px;padding:.4rem;backdrop-filter:blur(14px)}
+.nav-links a{font-size:.86rem;color:var(--ink-2);text-decoration:none;text-transform:lowercase;padding:.5rem 1rem;border-radius:999px;transition:color .2s ease,background .2s ease}
+.nav-links a:hover{color:var(--ink);background:rgba(255,255,255,.08)}
 .btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;text-align:center;font-family:inherit;font-size:.88rem;font-weight:500;color:var(--bg);background:var(--ink);padding:.85rem 1.6rem;border:0;border-radius:999px;transition:transform .2s var(--ease),background .2s ease}
 .btn:hover{background:var(--accent);transform:translateY(-2px)}
 .btn-nav{padding:.6rem 1.3rem;font-size:.84rem}
@@ -76,6 +78,7 @@ section{scroll-margin-top:76px;position:relative}
 .liquid-purple{background:conic-gradient(from 120deg at 50% 50%,#8b4bff,#ff4dab,#7ff0dd,#8b4bff)}
 .liquid-teal{background:conic-gradient(from 300deg at 50% 50%,#7ff0dd,#5b93ff,#d0a3ff,#7ff0dd)}
 .liquid-rose{background:conic-gradient(from 200deg at 50% 50%,#ff4dab,#8b4bff,#7ff0dd,#ff4dab)}
+.liquid-orange{background:conic-gradient(from 140deg at 50% 50%,#ff7a3d,#ff2d55,#3b82f6,#5eead4,#ff7a3d)}
 @keyframes blobMorph{0%,100%{border-radius:42% 58% 65% 35%/45% 45% 55% 55%}25%{border-radius:60% 40% 30% 70%/55% 65% 35% 45%}50%{border-radius:35% 65% 55% 45%/65% 35% 65% 35%}75%{border-radius:55% 45% 40% 60%/40% 60% 40% 60%}}
 @keyframes blobDrift{from{transform:translate(0,0) rotate(0deg) scale(1)}to{transform:translate(30px,-24px) rotate(16deg) scale(1.06)}}
 @keyframes blobIntro{from{opacity:0;transform:scale(.6) rotate(-20deg)}to{opacity:1;transform:scale(1) rotate(0deg)}}
@@ -86,12 +89,39 @@ section{scroll-margin-top:76px;position:relative}
 .hero .liquid-layer{inset:-10%}
 .hero .liquid{width:46vw;height:46vw;max-width:560px;max-height:560px;top:2%;right:-8%}
 .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:2rem;width:100%}
-.hero .label{display:block;margin-bottom:1.2rem}
-.hero h1{font-size:clamp(3rem,9vw,6rem);text-transform:uppercase;line-height:.95}
-.line-in{display:inline-block;opacity:0;filter:blur(10px);transform:translateY(30px);animation:lineIn 1s var(--ease) both;animation-delay:.15s}
-.line-in.d1{animation-delay:.4s}
+
+/* Lowercase, asymmetric two-word headline — each word offset independently so
+   they read as placed, not just stacked centered. Sits in front of the blob;
+   the blob's glow is meant to bleed around the letters, not behind a solid box. */
+.hero-h1{font-family:'Inter',sans-serif;font-weight:600;text-transform:lowercase;line-height:.92;letter-spacing:-.03em}
+.word-in{display:block;opacity:0;filter:blur(10px);transform:translateY(30px);animation:lineIn 1.1s var(--ease) both}
+.word-in.w1{font-size:clamp(2.6rem,7vw,5rem);color:var(--ink-2);margin-left:2vw;animation-delay:.15s}
+.word-in.w2{font-size:clamp(3.4rem,11vw,8.5rem);color:var(--ink);margin-left:8vw;animation-delay:.4s}
 @keyframes lineIn{to{opacity:1;filter:blur(0);transform:translateY(0)}}
-.hero-sub{font-size:1.05rem;color:var(--ink-2);max-width:46ch;margin:1.6rem 0 2.2rem}
+
+.hero-note{position:absolute;top:110px;left:28px;z-index:1;font-size:.86rem;color:var(--ink-2);max-width:26ch;line-height:1.5}
+.hero-mid-copy{position:absolute;top:52%;right:28px;z-index:1;max-width:30ch;font-size:.92rem;color:var(--ink-2);line-height:1.55;text-align:right}
+
+.stat-float{position:absolute;z-index:1;display:flex;flex-direction:column;gap:.3rem}
+.stat-num{font-family:'Inter',sans-serif;font-weight:700;font-size:1.7rem;color:var(--ink)}
+.stat-num em{font-style:normal;color:var(--accent)}
+.stat-lbl{font-size:.74rem;color:var(--ink-2);line-height:1.4}
+.stat-float::before{content:'';position:absolute;background:linear-gradient(var(--line),transparent);width:1px;height:38px}
+.sf-1{top:96px;right:34%}
+.sf-1::before{bottom:-40px;left:8px;transform:rotate(25deg);transform-origin:top}
+.sf-2{top:44%;left:26px}
+.sf-2::before{top:-40px;left:8px;transform:rotate(-15deg);transform-origin:bottom}
+.sf-3{bottom:22%;right:6%}
+.sf-3::before{top:-40px;right:8px;transform:rotate(15deg);transform-origin:bottom}
+@media(max-width:900px){.stat-float,.hero-note,.hero-mid-copy{display:none}}
+
+.hero-float-pill{position:absolute;z-index:1;left:50%;bottom:16%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(20,20,20,.55);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:999px;padding:.6rem .6rem .6rem 1.3rem}
+.pill-status{font-size:.84rem;color:var(--ink-2);white-space:nowrap}
+.pill-status::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent-2);margin-right:8px;box-shadow:0 0 8px var(--accent-2)}
+.btn-sm{padding:.6rem 1.3rem;font-size:.82rem;background:linear-gradient(120deg,var(--accent),#ff2d55)}
+.btn-sm:hover{background:linear-gradient(120deg,#ff2d55,var(--accent))}
+@media(max-width:640px){.hero-float-pill{bottom:8%;flex-direction:column;gap:8px;padding:1rem;left:28px;right:28px;transform:none;width:calc(100% - 56px)}}
+
 .scroll-cue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:1;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-2);animation:bob 2.4s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
 
@@ -115,7 +145,12 @@ section{scroll-margin-top:76px;position:relative}
 .section-head h2{font-size:clamp(2rem,4.4vw,3rem);margin-top:.6rem}
 .section-head p{color:var(--ink-2);margin-top:1rem;max-width:52ch}
 .services-grid{display:grid;grid-template-columns:1fr;gap:20px;position:relative;z-index:1}
-.service-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:2rem 1.7rem;transition:transform .4s var(--ease),border-color .4s ease}
+.service-card{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:2rem 1.7rem;transition:transform .4s var(--ease),border-color .4s ease}
+.service-card.has-blob{background:var(--surface-2)}
+.service-card .liquid-layer{opacity:.32}
+.service-card.has-blob::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,17,17,.25),rgba(17,17,17,.85) 55%);z-index:1;pointer-events:none}
+.card-blob{width:140%;height:140%;top:-30%;right:-30%}
+.service-card > *:not(.liquid-layer){position:relative;z-index:2}
 .service-card:hover{transform:translateY(-8px);border-color:rgba(192,132,252,.4)}
 .service-icon{width:44px;height:44px;border-radius:10px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;margin-bottom:1.4rem}
 .service-icon svg{width:22px;height:22px;stroke:var(--accent)}
@@ -215,41 +250,53 @@ body.menu-open{overflow:hidden}
 
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="wordmark" href="#top">Processa</a>
+    <a class="nav-brand" href="#top"><span class="nav-brand-icon" aria-hidden="true"></span><span class="wordmark">Processa</span></a>
     <ul class="nav-links">
-      <li><a href="#top">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about">about</a></li>
+      <li><a href="#services">services</a></li>
+      <li><a href="#process">process</a></li>
+      <li><a href="#contact">contact</a></li>
     </ul>
-    <a class="btn btn-nav" href="#contact">Start a project</a>
+    <a class="btn btn-nav" href="#contact">get started</a>
     <button class="burger" id="burgerBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#top">Home</a>
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#process">Process</a>
-  <a href="#contact">Contact</a>
-  <a href="#contact" class="btn">Start a project</a>
+  <a href="#top">home</a>
+  <a href="#about">about</a>
+  <a href="#services">services</a>
+  <a href="#process">process</a>
+  <a href="#contact">contact</a>
+  <a href="#contact" class="btn">get started</a>
 </div>
 
 <main id="main">
 
   <!-- Hero -->
   <section class="hero" id="top">
-    <div class="liquid-layer" aria-hidden="true"><span class="liquid liquid-purple"><i class="glint" aria-hidden="true"></i></span></div>
+    <div class="liquid-layer" aria-hidden="true"><span class="liquid liquid-orange"><i class="glint" aria-hidden="true"></i></span></div>
+
+    <p class="hero-note reveal">we build sites that guard every enquiry<br>with utmost care, empowering your business<br>with automation everywhere</p>
+
+    <div class="stat-float sf-1 reveal d1"><span class="stat-num">100<em>%</em></span><span class="stat-lbl">custom-coded<br>zero page builders</span></div>
+    <div class="stat-float sf-2 reveal d2"><span class="stat-num">0</span><span class="stat-lbl">trackers or ads<br>by default</span></div>
+    <div class="stat-float sf-3 reveal d3"><span class="stat-num">1<em>:1</em></span><span class="stat-lbl">developer, always<br>direct contact</span></div>
+
     <div class="wrap hero-grid">
-      <div>
-        <span class="label reveal">Websites &amp; automation infrastructure</span>
-        <h1><span class="line-in">We are</span><br><span class="line-in d1">Processa</span></h1>
-        <p class="hero-sub reveal" style="transition-delay:.9s">In the fast-moving world of small business, a full booking calendar isn't luck — it's the site and automation working quietly behind it.</p>
-        <div class="reveal" style="transition-delay:1.1s"><a href="#contact" class="btn">Start a project →</a></div>
-      </div>
+      <h1 class="hero-h1">
+        <span class="word-in w1">we are</span>
+        <span class="word-in w2">processa</span>
+      </h1>
     </div>
+
+    <p class="hero-mid-copy reveal d2">Working with a developer who treats every enquiry like it matters means fewer missed bookings, faster replies, and a site that earns its keep.</p>
+
+    <div class="hero-float-pill reveal d3">
+      <span class="pill-status">available for new projects</span>
+      <a href="#contact" class="btn btn-sm">start a project</a>
+    </div>
+
     <span class="scroll-cue" aria-hidden="true">↓</span>
   </section>
 
@@ -289,7 +336,8 @@ body.menu-open{overflow:hidden}
           <p>A fast, custom-coded site built around your business, not a generic template.</p>
           <a href="#contact" class="discover">Discover <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6-6"/></svg></a>
         </div>
-        <div class="service-card reveal d1">
+        <div class="service-card has-blob reveal d1">
+          <div class="liquid-layer" aria-hidden="true"><span class="liquid liquid-rose card-blob"><i class="glint" aria-hidden="true"></i></span></div>
           <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m8 10 2 2-2 2M13 14h3"/></svg></div>
           <h3>Booking &amp; automation</h3>
           <p>Real booking flows and admin tools, so requests stop landing in a chat someone manages by hand.</p>
