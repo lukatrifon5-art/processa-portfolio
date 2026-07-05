@@ -2,143 +2,424 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Processa — Freelance Web Developer</title>
-<meta name="description" content="Processa builds fast, custom-coded websites with real booking and automation underneath — not just a homepage.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Processa — Websites & Automation for Growing Businesses</title>
+<meta name="description" content="Processa builds conversion infrastructure and automated client-acquisition systems for growing businesses. Stop the enquiries that never turn into clients.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Processa — Websites & Automation for Growing Businesses">
+<meta property="og:description" content="Software and automation studio. We stop the pipeline leak and convert it into predictable client acquisition.">
+<meta property="og:site_name" content="Processa">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Processa — Websites & Automation for Growing Businesses">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FAF8F4'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='40' font-weight='700' fill='%23B8963E' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111214'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%234F46E5' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Processa",
+  "description": "Software and automation studio building conversion infrastructure and automated client-acquisition systems for growing businesses."
+}
+</script>
+<style>
+:root{
+  --bg:#FAF8F4;
+  --surface:#FFFFFF;
+  --ink:#161310;
+  --ink-2:#6E6659;
+  --line:rgba(22,19,16,.09);
+  --gold:#B8963E;
+  --gold-ink:#7C6423;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{
+  font-family:'Geist',system-ui,-apple-system,'Helvetica Neue',sans-serif;
+  font-size:1rem;line-height:1.6;
+  color:var(--ink);background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2{font-family:'Playfair Display',Georgia,serif;font-weight:600;letter-spacing:-.025em;line-height:1.08;text-wrap:balance}
+a{color:inherit}
+::selection{background:rgba(184,150,62,.2)}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:24px}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--bg);padding:.6rem 1rem;z-index:200}
+.skip-link:focus{left:12px;top:12px}
+:focus-visible{outline:2px solid var(--gold-ink);outline-offset:3px}
+
+.label{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink)}
+
+/* ---------- Nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,248,244,.92);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.wordmark{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:1.3rem;text-decoration:none}
+.wordmark::after{content:".";color:var(--gold)}
+.btn{
+  display:inline-block;cursor:pointer;text-decoration:none;text-align:center;
+  font-family:inherit;font-size:.9rem;font-weight:500;
+  color:#FFFFFF;background:var(--ink);
+  padding:.8rem 1.7rem;border:0;border-radius:6px;
+  transition:background .2s var(--ease),transform .15s var(--ease);
+}
+.btn:hover{background:#332C24}
+.btn:active{transform:scale(.98)}
+.btn-nav{padding:.55rem 1.15rem;font-size:.84rem}
+
+/* ---------- Hero (3D particle sphere) ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#orb{position:absolute;inset:0;width:100%;height:100%;filter:blur(1.1px)}
+.hero-veil{position:absolute;inset:0;background:radial-gradient(ellipse 58% 50% at 50% 50%, rgba(250,248,244,.82) 0%, rgba(250,248,244,.38) 55%, rgba(250,248,244,0) 100%);pointer-events:none}
+.hero-inner{position:relative;text-align:center;padding:6rem 24px 4rem}
+.hero .label{display:block;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.7rem,6.2vw,4.6rem);max-width:19ch;margin-inline:auto}
+@media(max-width:600px){.hero h1{font-size:10vw}}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--gold-ink)}
+.hero-sub{font-size:clamp(1.02rem,1.5vw,1.15rem);color:var(--ink-2);max-width:54ch;margin:1.8rem auto 2.5rem}
+.hero .label,.hero h1,.hero-sub{text-shadow:0 0 10px rgba(250,248,244,.95),0 0 22px rgba(250,248,244,.85),0 0 48px rgba(250,248,244,.7)}
+.scroll-cue{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
+.scroll-cue::after{content:"";display:block;width:1px;height:34px;margin:.6rem auto 0;background:linear-gradient(var(--gold),transparent);animation:cue 2.2s var(--ease) infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}45%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* ---------- Stats over fixed photo ---------- */
+.stats-band{position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line);clip-path:inset(0);padding:clamp(3rem,6.5vw,4.75rem) 0}
+.stats-band::before{content:"";position:fixed;inset:0;z-index:-2;background:url('assets/images/studio-space.jpg') center 60%/cover no-repeat}
+.stats-band::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(22,19,16,.5), rgba(22,19,16,.38))}
+.stats-band .wrap{position:relative}
+.stat-strip{display:grid;grid-template-columns:1fr;gap:1.8rem}
+.stat .num{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.4rem,4.5vw,3.6rem);font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1;color:#FAF8F4}
+.stat .num .aff{color:#D8B96A}
+.stat p{font-size:.88rem;color:rgba(250,248,244,.82);margin-top:.5rem;max-width:28ch}
+@media(min-width:700px){.stat-strip{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:819px){.stats-band::before{position:absolute}}
+
+/* ---------- Before / After ---------- */
+.compare-head{margin:clamp(3rem,6vw,4.5rem) 0 1.6rem}
+.compare-head h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(1.45rem,2.8vw,2rem);letter-spacing:-.015em;margin-bottom:.5rem}
+.compare-head p{font-size:.92rem;color:var(--ink-2)}
+.compare{display:grid;grid-template-columns:1fr;gap:1.4rem}
+@media(min-width:820px){.compare{grid-template-columns:1fr 1fr;gap:1.6rem}}
+.cmp-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.7rem}
+.cmp-card header{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.2rem}
+.cmp-tag{font-size:.7rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2)}
+.badge{font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:.3rem .8rem}
+.badge.lost{background:#FDEBEC;color:#9F2F2D}
+.badge.booked{background:#EDF3EC;color:#346538}
+.cmp-name{font-weight:600;font-size:.95rem;margin-bottom:1rem}
+.tl{list-style:none;display:grid;gap:.6rem}
+.tl li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;font-size:.86rem;color:var(--ink-2);border:1px solid var(--line);border-radius:8px;padding:.6rem .85rem;background:var(--bg)}
+.tl time{font-size:.76rem;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+.cmp-outcome{margin-top:1.2rem;padding-top:1.1rem;border-top:1px solid var(--line);font-size:.9rem;font-weight:500}
+
+/* ---------- Pillars ---------- */
+.pillars{margin-top:clamp(4rem,8vw,6rem);display:grid;gap:clamp(3.5rem,7vw,5.5rem)}
+.pillar{display:grid;grid-template-columns:1fr;gap:2.2rem;align-items:center}
+.pillar .label{display:block;margin-bottom:1rem}
+.pillar h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(1.9rem,4vw,2.8rem);letter-spacing:-.02em;line-height:1.12;max-width:16ch;margin-bottom:1.2rem;text-wrap:balance}
+.pillar h3 em{font-style:italic;font-weight:500;color:var(--gold-ink)}
+.pillar .body p{font-size:1.08rem;color:var(--ink-2);max-width:40ch;line-height:1.55}
+.pillar .body p strong{color:var(--ink);font-weight:600}
+.pillar .body p+p{margin-top:.7rem}
+.pillar .outcome{font-size:.9rem;font-weight:500;color:var(--ink);margin-top:1.3rem}
+.pillar .outcome::before{content:"";display:inline-block;width:16px;height:1px;background:var(--gold);vertical-align:middle;margin-right:.5rem}
+@media(min-width:880px){
+  .pillar{grid-template-columns:1fr .8fr;gap:4.5rem}
+  .pillar.rev{grid-template-columns:.8fr 1fr}
+  .pillar.rev .pillar-visual{order:-1}
+}
+.mock{position:relative;z-index:1;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.5rem;max-width:390px;width:100%;margin-inline:auto;box-shadow:0 30px 60px -42px rgba(22,19,16,.35)}
+@media(min-width:900px){.float{animation:float 7s ease-in-out infinite}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.mock .q{font-size:.86rem;color:var(--ink-2);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:.65rem .9rem;margin-bottom:1rem}
+.mock .ans{border:1px solid rgba(184,150,62,.45);border-radius:8px;padding:1rem;background:rgba(184,150,62,.06)}
+.mock .ans .src{font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ink);display:block;margin-bottom:.4rem}
+.mock .ans strong{font-size:1rem}
+.mock .ans p{font-size:.82rem;color:var(--ink-2);margin-top:.3rem;line-height:1.5}
+.flow .node{display:flex;align-items:center;gap:.7rem;border:1px solid var(--line);border-radius:8px;padding:.7rem .95rem;background:var(--bg);font-size:.86rem;font-weight:500;font-variant-numeric:tabular-nums}
+.flow .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none}
+.flow .link{width:1px;height:14px;background:rgba(22,19,16,.18);margin-left:1.35rem}
+.flow .tag{display:inline-block;margin-top:1rem;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ink);border:1px solid rgba(184,150,62,.45);border-radius:4px;padding:.3rem .6rem;background:rgba(184,150,62,.06)}
+.bars{display:grid;gap:1.1rem}
+.bars .row{display:grid;grid-template-columns:1fr auto;gap:.4rem;font-size:.84rem;font-weight:500}
+.bars .v{font-variant-numeric:tabular-nums;color:var(--ink-2)}
+.bars .track{grid-column:1/-1;height:5px;border-radius:3px;background:rgba(22,19,16,.07);overflow:hidden}
+.bars .track i{display:block;height:100%;border-radius:3px;background:var(--gold)}
+
+/* ---------- Sections ---------- */
+section{scroll-margin-top:64px}
+.section{padding:clamp(5rem,11vw,8.5rem) 0}
+.bordered{border-top:1px solid var(--line)}
+.section-head{max-width:640px;margin-bottom:clamp(2.8rem,6vw,4.5rem)}
+.section-head .label{display:block;margin-bottom:1.1rem}
+.section-head h2{font-size:clamp(1.9rem,4.2vw,2.9rem);margin-bottom:1.1rem}
+.section-head h2 em{font-style:italic;font-weight:500;color:var(--gold-ink)}
+.section-head .lede{color:var(--ink-2);max-width:58ch}
+
+/* ---------- Calculator ---------- */
+.calc-panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:clamp(1.8rem,4vw,3rem);display:grid;grid-template-columns:1fr;gap:2.5rem}
+.calc-qs{display:grid;gap:1.9rem}
+.calc-q{border:0;padding:0;margin:0}
+.calc-q legend{font-size:.86rem;font-weight:600;margin-bottom:.7rem;padding:0}
+.pills{display:flex;flex-wrap:wrap;gap:.5rem}
+.pill{position:relative;cursor:pointer}
+.pill input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.pill span{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.1rem;border:1px solid var(--line);border-radius:6px;font-size:.86rem;color:var(--ink-2);background:var(--surface);font-variant-numeric:tabular-nums;transition:border-color .2s var(--ease),color .2s var(--ease),background .2s var(--ease)}
+.pill:hover span{border-color:rgba(22,19,16,.28);color:var(--ink)}
+.pill input:checked+span{background:var(--ink);border-color:var(--ink);color:#FFFFFF;font-weight:500}
+.pill input:focus-visible+span{outline:2px solid var(--gold-ink);outline-offset:2px}
+.calc-result{border-top:1px solid var(--line);padding-top:2rem}
+.calc-result .label{display:block;margin-bottom:1rem}
+.calc-result .r-num{font-family:'Playfair Display',Georgia,serif;font-weight:600;line-height:1;font-size:clamp(2.6rem,5.5vw,3.8rem);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.calc-result .r-num .aff{color:var(--gold-ink)}
+.calc-result .r-sub{font-size:.9rem;color:var(--ink-2);margin:1.1rem 0 1.8rem;max-width:36ch}
+.calc-result .footnote{font-size:.74rem;color:var(--ink-2);margin-top:1.4rem;max-width:38ch}
+@media(min-width:880px){
+  .calc-panel{grid-template-columns:1.15fr .85fr;gap:3.5rem}
+  .calc-result{border-top:0;border-left:1px solid var(--line);padding:0 0 0 3rem}
+}
+
+/* ---------- Form ---------- */
+.form-shell{max-width:580px}
+.leak-note{font-size:.85rem;color:var(--ink-2);border:1px solid var(--line);border-radius:6px;background:var(--surface);padding:.8rem 1.2rem;margin-bottom:1.5rem}
+.leak-note strong{color:var(--gold-ink);font-variant-numeric:tabular-nums;font-weight:600}
+form{display:grid;grid-template-columns:1fr;gap:1.3rem}
+.field label{display:block;font-size:.84rem;font-weight:500;margin-bottom:.4rem}
+.field label .req{color:var(--gold-ink)}
+.field input,.field select,.field textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:.8rem 1rem;min-height:48px;transition:border-color .2s var(--ease),box-shadow .2s var(--ease);appearance:none;-webkit-appearance:none}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236E6659' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.field textarea{min-height:104px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(22,19,16,.06)}
+.two-col{display:grid;grid-template-columns:1fr;gap:1.3rem}
+@media(min-width:620px){.two-col{grid-template-columns:1fr 1fr}}
+form .btn{width:100%;padding:.95rem 1.7rem;border:none;cursor:pointer;font-family:inherit}
+.form-foot{font-size:.78rem;color:var(--ink-2)}
+.confirm{display:none;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:2.8rem 2.2rem}
+.confirm.show{display:block}
+.confirm h3{font-family:'Playfair Display',Georgia,serif;font-size:1.5rem;font-weight:600;margin-bottom:.7rem}
+.confirm p{color:var(--ink-2);max-width:44ch;font-size:.92rem}
+.btn[disabled]{opacity:.55;cursor:default}
+
+/* ---------- Footer ---------- */
+footer{background:var(--ink);color:var(--bg);padding:clamp(3.5rem,7vw,5rem) 0 2rem}
+.foot-top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:2.5rem;padding-bottom:2.8rem}
+.foot-brand .wordmark{color:var(--bg);font-size:1.5rem}
+.foot-brand .wordmark::after{color:var(--gold)}
+.foot-tagline{font-size:.92rem;color:rgba(250,248,244,.62);margin-top:1rem;max-width:32ch;line-height:1.55}
+.foot-col h4{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,248,244,.5);margin-bottom:1.1rem}
+.foot-col ul{list-style:none;display:grid;gap:.7rem}
+.foot-col a{font-size:.9rem;color:rgba(250,248,244,.8);text-decoration:none;transition:color .2s ease,padding-left .2s ease}
+.foot-col a:hover{color:var(--gold);padding-left:3px}
+.foot-bottom{display:flex;flex-direction:column;gap:.8rem;padding-top:1.8rem;border-top:1px solid rgba(250,248,244,.12);font-size:.78rem;color:rgba(250,248,244,.5)}
+@media(min-width:700px){.foot-bottom{flex-direction:row;justify-content:space-between;align-items:center}}
+@media(max-width:760px){.foot-top{grid-template-columns:1fr;gap:2rem}}
+
+/* ---------- Reveal ---------- */
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}
+.reveal.d2{transition-delay:.16s}
+.reveal.d3{transition-delay:.24s}
+</style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<a href="#main" class="skip-link">Skip to content</a>
-
-<header id="siteHeader">
-  <div class="wrap">
-    <a href="#top" class="wordmark">Processa</a>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Work</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="header-actions">
-      <a href="#contact" class="btn btn-primary">Get in touch</a>
-      <button class="burger" id="burgerBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
-    </div>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="wordmark" href="#top" aria-label="Processa — home">Processa</a>
+    <a class="btn btn-nav" href="#book">Book a call</a>
   </div>
 </header>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#about">About</a>
-  <a href="#services">Work</a>
-  <a href="#contact">Contact</a>
-</div>
-
 <main id="main">
 
-  <section class="hero" id="top">
-    <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
-    <div class="wrap hero-inner">
-      <span class="eyebrow reveal">Freelance web developer</span>
-      <h1 class="reveal d1">I build websites that <em>run your business</em>, not just describe it.</h1>
-      <p class="hero-sub reveal d2">Clean, fast, custom-coded sites with real booking flows and automation underneath. No page builders, no bloat — just what your business actually needs.</p>
-      <div class="hero-actions reveal d3">
-        <a href="#contact" class="btn btn-primary">Start a project</a>
-        <a href="#services" class="btn btn-outline">See what I build</a>
-      </div>
+  <!-- Hero -->
+  <section class="hero" id="top" aria-labelledby="hero-h">
+    <canvas id="orb" aria-hidden="true"></canvas>
+    <div class="hero-veil" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <span class="label reveal">Websites &amp; automation for growing businesses</span>
+      <h1 id="hero-h" class="reveal d1">A full booking calendar<br>is not luck.<br><em>It is infrastructure.</em></h1>
+      <p class="hero-sub reveal d2">Your site answers every enquiry in minutes, books it straight into your calendar, and never drops a lead overnight. Built as software, running quietly behind your business.</p>
     </div>
-    <span class="scroll-cue" aria-hidden="true">Scroll</span>
+    <p class="scroll-cue" aria-hidden="true">Scroll</p>
   </section>
 
-  <section class="section bordered" id="about">
+  <!-- Stats over fixed photo -->
+  <section class="stats-band" aria-label="Market figures">
     <div class="wrap">
-      <div class="about-grid">
-        <div class="about-body">
-          <span class="eyebrow reveal">About</span>
-          <h2 class="reveal">Based in Chișinău. Working with clients anywhere.</h2>
-          <p class="reveal d1">I design and build every site myself — <strong>no templates, no page builders</strong> — so it loads fast and does exactly what your business needs, whether that's a booking calendar, an admin panel, or just a site that finally looks like you mean it.</p>
-          <p class="reveal d2">I keep projects small on purpose: one developer, direct communication, no account managers in between.</p>
-          <div class="tags reveal d3">
-            <span class="tag">HTML / CSS / JS</span>
-            <span class="tag">Booking systems</span>
-            <span class="tag">Admin panels</span>
-            <span class="tag">Vercel</span>
-            <span class="tag">Performance</span>
-          </div>
+      <div class="stat-strip">
+        <div class="stat reveal">
+          <span class="num"><span data-count="58" data-suffix="%">0%</span></span>
+          <p>of customers check a business online before contacting it</p>
         </div>
-        <div class="stat-list">
-          <div class="stat-item reveal">
-            <span class="num">100%</span>
-            <span class="lbl">Custom-coded — no page-builder bloat</span>
-          </div>
-          <div class="stat-item reveal d1">
-            <span class="num">0</span>
-            <span class="lbl">Trackers or ads by default</span>
-          </div>
-          <div class="stat-item reveal d2">
-            <span class="num">1</span>
-            <span class="lbl">Developer — you talk to me, always</span>
-          </div>
+        <div class="stat reveal d1">
+          <span class="num"><span data-count="41" data-suffix="%">0%</span></span>
+          <p>of new enquiries never receive a follow-up</p>
+        </div>
+        <div class="stat reveal d2">
+          <span class="num"><span data-count="18" data-suffix="×">0×</span></span>
+          <p>higher contact rate when you answer within 5 minutes</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section bordered" id="services">
+  <!-- What we solve -->
+  <section class="section" id="services" aria-labelledby="svc-h">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">What I build</span>
-        <h2>Three ways I usually help.</h2>
-        <p>Every project starts from what your business actually needs to run better — not a template you have to work around.</p>
+        <span class="label">What I solve</span>
+        <h2 id="svc-h">Every empty slot has a cause. <em>I fix three.</em></h2>
+        <p class="lede">Not a template shop. Infrastructure that keeps the calendar full.</p>
       </div>
-      <div class="services-grid">
-        <div class="service-card reveal">
-          <span class="service-num">01</span>
-          <h3>Website design &amp; build</h3>
-          <p>A fast, custom-coded site built around your business — not a generic template with your logo swapped in.</p>
-        </div>
-        <div class="service-card reveal d1">
-          <span class="service-num">02</span>
-          <h3>Booking &amp; automation</h3>
-          <p>Real booking flows and simple admin tools, so requests stop landing in a WhatsApp chat someone has to manage by hand.</p>
-        </div>
-        <div class="service-card reveal d2">
-          <span class="service-num">03</span>
-          <h3>Ongoing support</h3>
-          <p>Fixes, small changes, new sections after launch — you're never stuck waiting on an agency queue.</p>
-        </div>
+
+      <div class="compare-head reveal">
+        <h3>The lost-enquiry problem</h3>
+        <p>Same enquiry, same business. The only difference is the system behind it.</p>
       </div>
-    </div>
-  </section>
+      <div class="compare">
+        <article class="cmp-card reveal">
+          <header>
+            <span class="cmp-tag">Without a system</span>
+            <span class="badge lost">Lost</span>
+          </header>
+          <p class="cmp-name">Anna, booking enquiry</p>
+          <ul class="tl">
+            <li><span>Website form submitted</span><time>9:04 pm</time></li>
+            <li><span>Seen the next morning</span><time>next day, 11:30 am</time></li>
+            <li><span>First reply. No answer back.</span><time>4:15 pm</time></li>
+          </ul>
+          <p class="cmp-outcome">Booked with a competitor instead.</p>
+        </article>
+        <article class="cmp-card reveal d1">
+          <header>
+            <span class="cmp-tag">With Processa</span>
+            <span class="badge booked">Booked</span>
+          </header>
+          <p class="cmp-name">Anna, booking enquiry</p>
+          <ul class="tl">
+            <li><span>Website form submitted</span><time>9:04 pm</time></li>
+            <li><span>Confirmation sent automatically</span><time>9:05 pm</time></li>
+            <li><span>Slot booked in the calendar</span><time>9:07 pm</time></li>
+          </ul>
+          <p class="cmp-outcome">In the calendar before competitors even open.</p>
+        </article>
+      </div>
 
-  <section class="atmosphere">
-    <div class="wrap reveal">
-      <blockquote>"Every site should do one thing well: turn a visitor into a client."
-        <cite>— how I build</cite>
-      </blockquote>
-    </div>
-  </section>
-
-  <section class="section" id="contact">
-    <div class="wrap">
-      <div class="contact-grid">
-        <div class="contact-body reveal">
-          <span class="eyebrow">Get in touch</span>
-          <h2>Have a project in mind?</h2>
-          <p>Tell me what your site needs to do, and I'll tell you honestly whether I'm the right fit — no sales pitch, no pressure.</p>
-        </div>
-        <div class="contact-links reveal d1">
-          <a class="contact-link" href="mailto:lukatrifon5@gmail.com">
-            <div>
-              <div class="label">Email</div>
-              <div class="value">lukatrifon5@gmail.com</div>
+      <div class="pillars">
+        <div class="pillar reveal">
+          <div>
+            <span class="label">01</span>
+            <h3>Your site looks good. <em>It just doesn't do anything.</em></h3>
+            <div class="body">
+              <p>I design and build a site around what your business actually needs — <strong>booking, contact, follow-up</strong> — not a page that just sits there looking nice.</p>
+              <p class="outcome">A site that works, not just one that loads.</p>
             </div>
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
+          </div>
+          <div class="pillar-visual mock float" aria-hidden="true">
+            <p class="q">"Can I book Tuesday afternoon?"</p>
+            <div class="ans">
+              <span class="src">Live availability · booking form</span>
+              <strong>Confirmed instantly</strong>
+              <p>Slot reserved, confirmation sent, no back-and-forth over the phone.</p>
+            </div>
+          </div>
+        </div>
+        <div class="pillar rev reveal">
+          <div>
+            <span class="label">02</span>
+            <h3>Enquiries at 9pm. <em>Replies on Tuesday.</em></h3>
+            <div class="body">
+              <p>Automation replies in <strong>under a minute</strong> and books the request straight into your calendar. <strong>Zero manual steps.</strong></p>
+              <p class="outcome">Follow-up in minutes, not days.</p>
+            </div>
+          </div>
+          <div class="pillar-visual mock float" aria-hidden="true">
+            <div class="flow">
+              <div class="node"><span class="dot"></span>New enquiry, 21:47</div>
+              <div class="link"></div>
+              <div class="node"><span class="dot"></span>Auto-confirmed, 21:48</div>
+              <div class="link"></div>
+              <div class="node"><span class="dot"></span>Booked in the calendar, 21:49</div>
+              <p class="tag">0 manual steps</p>
+            </div>
+          </div>
+        </div>
+        <div class="pillar reveal">
+          <div>
+            <span class="label">03</span>
+            <h3>Fixes and changes <em>you're not stuck waiting on.</em></h3>
+            <div class="body">
+              <p>One developer, direct contact, no ticket queue. Small changes ship in <strong>days</strong>, not sprint cycles.</p>
+              <p class="outcome">Support as a controlled variable.</p>
+            </div>
+          </div>
+          <div class="pillar-visual mock float" aria-hidden="true">
+            <div class="bars">
+              <div class="row"><span>Site uptime</span><span class="v">99.9%</span><div class="track"><i style="width:99%"></i></div></div>
+              <div class="row"><span>Avg. reply time</span><span class="v">&lt;1 day</span><div class="track"><i style="width:85%"></i></div></div>
+              <div class="row"><span>Manual steps removed</span><span class="v">100%</span><div class="track"><i style="width:100%"></i></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book a Call -->
+  <section class="section bordered" id="book" aria-labelledby="book-h">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="label">The only next step</span>
+        <h2 id="book-h">Book a call</h2>
+        <p class="lede">Thirty minutes. I'll look at what your site does today and show you what infrastructure behind it could look like. No deck, no pressure.</p>
+      </div>
+      <div class="form-shell reveal">
+        <form id="bookCallForm" novalidate>
+          <div class="two-col">
+            <div class="field">
+              <label for="f-name">Name <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="f-business">Business name <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-business" name="business" type="text" autocomplete="organization" required>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="field">
+              <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="f-country">Country</label>
+              <select id="f-country" name="country">
+                <option value="" selected disabled>Select country</option>
+                <option>USA</option>
+                <option>Canada</option>
+                <option>UK</option>
+                <option>Australia</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-bottleneck">Biggest bottleneck</label>
+            <textarea id="f-bottleneck" name="bottleneck" rows="4" placeholder="e.g. enquiries come in but nobody follows up in time"></textarea>
+          </div>
+          <button class="btn" type="submit">Book a call</button>
+          <p class="form-foot">Replies within one business day.</p>
+        </form>
+        <div class="confirm" id="confirm" role="status" tabindex="-1">
+          <h3>Request received.</h3>
+          <p>Thanks — I'll get back to you within one business day with a few time slots.</p>
         </div>
       </div>
     </div>
@@ -147,12 +428,172 @@
 </main>
 
 <footer>
-  <div class="wrap foot-inner">
-    <span>&copy; 2026 Processa. All rights reserved.</span>
-    <a href="mailto:lukatrifon5@gmail.com">lukatrifon5@gmail.com</a>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="wordmark" href="#top" aria-label="Processa — back to top">Processa</a>
+        <p class="foot-tagline">Websites and automation infrastructure for businesses that need enquiries to turn into bookings, not silence.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#services">What I solve</a></li>
+          <li><a href="#book">Book a call</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Focus</h4>
+        <ul>
+          <li><a href="#services">Booking systems</a></li>
+          <li><a href="#services">Response automation</a></li>
+          <li><a href="#services">Ongoing support</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Processa. All rights reserved.</span>
+      <span>Built solo. No page builders.</span>
+    </div>
   </div>
 </footer>
 
-<script src="assets/script.js"></script>
+<script>
+(function(){
+  'use strict';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ================= 3D particle orb ================= */
+  var canvas = document.getElementById('orb');
+  var ctx = canvas.getContext('2d');
+  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  var points = [];
+  var angle = 1.2;
+  var rafId = null;
+  var heroVisible = true;
+
+  function buildOrb(){
+    points = [];
+    var i, n = 1800;
+    for(i = 0; i < n; i++){
+      var dx = Math.random() * 2 - 1, dy = Math.random() * 2 - 1, dz = Math.random() * 2 - 1;
+      var len = Math.sqrt(dx*dx + dy*dy + dz*dz) || 1;
+      dx /= len; dy /= len; dz /= len;
+      var r = 0.72 + Math.random() * 0.06;
+      points.push({ x: dx * r, y: dy * r, z: dz * r, g: Math.random() < 0.68 });
+    }
+  }
+
+  function sizeCanvas(){
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    canvas.width = Math.round(w * DPR);
+    canvas.height = Math.round(h * DPR);
+  }
+
+  function drawOrb(){
+    var w = canvas.width, h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+    var scale = Math.min(w, h) * 0.34;
+    var cx = w / 2, cy = h / 2;
+    var sinY = Math.sin(angle), cosY = Math.cos(angle);
+    var tilt = -0.32, sinX = Math.sin(tilt), cosX = Math.cos(tilt);
+    var fov = 3.2;
+    for(var i = 0; i < points.length; i++){
+      var pt = points[i];
+      var x = pt.x * cosY + pt.z * sinY;
+      var z = -pt.x * sinY + pt.z * cosY;
+      var y = pt.y * cosX - z * sinX;
+      z = pt.y * sinX + z * cosX;
+      var k = fov / (fov + z);
+      var sx = cx + x * scale * k;
+      var sy = cy - y * scale * k;
+      var depth = (1.4 - z) / 2.4;
+      var alpha = Math.max(0.06, Math.min(0.55, depth * 0.55));
+      ctx.fillStyle = pt.g
+        ? 'rgba(112,107,99,' + alpha + ')'
+        : 'rgba(82,78,72,' + (alpha * 0.65) + ')';
+      var r2 = Math.max(0.9, 2.0 * k) * DPR;
+      ctx.beginPath();
+      ctx.arc(sx, sy, r2, 0, 6.2832);
+      ctx.fill();
+    }
+  }
+
+  function loop(){
+    angle += 0.0038;
+    drawOrb();
+    rafId = requestAnimationFrame(loop);
+  }
+  function startOrb(){ if(rafId === null && !reduceMotion){ rafId = requestAnimationFrame(loop); } }
+  function stopOrb(){ if(rafId !== null){ cancelAnimationFrame(rafId); rafId = null; } }
+
+  buildOrb();
+  sizeCanvas();
+  drawOrb();
+  window.addEventListener('resize', function(){ sizeCanvas(); drawOrb(); });
+
+  if(!reduceMotion && 'IntersectionObserver' in window){
+    var heroObs = new IntersectionObserver(function(entries){
+      heroVisible = entries[0].isIntersecting;
+      if(heroVisible){ startOrb(); } else { stopOrb(); }
+    }, { threshold: 0.05 });
+    heroObs.observe(document.querySelector('.hero'));
+    document.addEventListener('visibilitychange', function(){
+      if(document.hidden){ stopOrb(); } else if(heroVisible){ startOrb(); }
+    });
+    startOrb();
+  }
+
+  /* ================= Counters ================= */
+  function formatNum(n){ return Math.round(n).toLocaleString('en-GB'); }
+  function setFinal(el){ el.textContent = formatNum(+el.dataset.count) + (el.dataset.suffix || ''); }
+  function animateCount(el){
+    var target = +el.dataset.count, suffix = el.dataset.suffix || '';
+    var dur = 1400, start = null;
+    function frame(ts){
+      if(start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = formatNum(target * eased) + suffix;
+      if(p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  var counters = document.querySelectorAll('[data-count]');
+  var revealEls = document.querySelectorAll('.reveal');
+
+  if(reduceMotion || !('IntersectionObserver' in window)){
+    counters.forEach(setFinal);
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var countObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ animateCount(entry.target); countObs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function(el){ countObs.observe(el); });
+
+    var revealObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('in'); revealObs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function(el){ revealObs.observe(el); });
+  }
+
+  /* ================= Book-a-call form (mailto, no backend) ================= */
+  var form = document.getElementById('bookCallForm');
+  var confirmBox = document.getElementById('confirm');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+
+    form.style.display = 'none';
+    confirmBox.classList.add('show');
+    confirmBox.focus();
+  });
+})();
+</script>
 </body>
 </html>
