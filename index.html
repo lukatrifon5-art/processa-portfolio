@@ -57,7 +57,14 @@ a{color:inherit}
 .label{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink)}
 
 /* ---------- Nav ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,248,244,.92);border-bottom:1px solid var(--line)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;border-bottom:1px solid transparent;transition:background .3s ease,border-color .3s ease}
+.nav .wordmark{color:#FAF8F4;transition:color .3s ease}
+.nav .btn-nav{background:#FAF8F4;color:var(--ink);transition:background .3s ease,color .3s ease}
+.nav .btn-nav:hover{background:#FFFFFF}
+.nav.scrolled{background:rgba(250,248,244,.92);border-bottom-color:var(--line);backdrop-filter:blur(10px)}
+.nav.scrolled .wordmark{color:var(--ink)}
+.nav.scrolled .btn-nav{background:var(--ink);color:#FFFFFF}
+.nav.scrolled .btn-nav:hover{background:#332C24}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
 .wordmark{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:1.3rem;text-decoration:none}
 .wordmark::after{content:".";color:var(--gold)}
@@ -73,18 +80,33 @@ a{color:inherit}
 .btn-nav{padding:.55rem 1.15rem;font-size:.84rem}
 
 /* ---------- Hero (3D particle sphere) ---------- */
-.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-#orb{position:absolute;inset:0;width:100%;height:100%;filter:blur(1.1px)}
-.hero-veil{position:absolute;inset:0;background:radial-gradient(ellipse 58% 50% at 50% 50%, rgba(250,248,244,.82) 0%, rgba(250,248,244,.38) 55%, rgba(250,248,244,0) 100%);pointer-events:none}
-.hero-inner{position:relative;text-align:center;padding:6rem 24px 4rem}
-.hero .label{display:block;margin-bottom:1.5rem}
-.hero h1{font-size:clamp(2.7rem,6.2vw,4.6rem);max-width:19ch;margin-inline:auto}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#050505}
+
+/* Animated iridescent blob field — morphing border-radius + slow drift/rotation,
+   layered with mix-blend-mode:screen so the overlaps glow like the reference
+   instead of just stacking as flat colored circles. */
+.blob-field{position:absolute;inset:-15%;z-index:0;overflow:hidden;pointer-events:none}
+.blob{position:absolute;mix-blend-mode:screen;filter:blur(6px);will-change:transform,border-radius;animation:blobMorph 16s ease-in-out infinite, blobDrift 30s ease-in-out infinite alternate}
+.blob-1{width:52vw;height:52vw;max-width:640px;max-height:640px;top:-8%;left:-6%;background:conic-gradient(from 120deg at 50% 50%, #ff5f3d, #ff2d6e, #7b3bff, #14c8e0, #ff5f3d);animation-duration:17s,34s}
+.blob-2{width:44vw;height:44vw;max-width:560px;max-height:560px;bottom:-12%;right:-8%;background:conic-gradient(from 300deg at 50% 50%, #2d6bff, #14e0c4, #ff8a3d, #2d6bff);animation-duration:20s,26s;animation-delay:-6s,-4s}
+.blob-3{width:34vw;height:34vw;max-width:420px;max-height:420px;top:36%;right:14%;background:conic-gradient(from 200deg at 50% 50%, #ff2d6e, #7b3bff, #14c8e0, #ff2d6e);animation-duration:15s,22s;animation-delay:-10s,-12s;opacity:.8}
+@keyframes blobMorph{
+  0%,100%{border-radius:42% 58% 65% 35% / 45% 45% 55% 55%}
+  25%{border-radius:60% 40% 30% 70% / 55% 65% 35% 45%}
+  50%{border-radius:35% 65% 55% 45% / 65% 35% 65% 35%}
+  75%{border-radius:55% 45% 40% 60% / 40% 60% 40% 60%}
+}
+@keyframes blobDrift{from{transform:translate(0,0) rotate(0deg) scale(1)}to{transform:translate(40px,-30px) rotate(20deg) scale(1.08)}}
+.hero-veil{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 45%, rgba(5,5,5,.45) 0%, rgba(5,5,5,.15) 55%, rgba(5,5,5,.55) 100%);pointer-events:none}
+.hero-inner{position:relative;z-index:1;text-align:center;padding:6rem 24px 4rem}
+.hero .label{display:block;margin-bottom:1.5rem;color:#D8B96A}
+.hero h1{font-size:clamp(2.7rem,6.2vw,4.6rem);max-width:19ch;margin-inline:auto;color:#FAF8F4}
 @media(max-width:600px){.hero h1{font-size:10vw}}
-.hero h1 em{font-style:italic;font-weight:500;color:var(--gold-ink)}
-.hero-sub{font-size:clamp(1.02rem,1.5vw,1.15rem);color:var(--ink-2);max-width:54ch;margin:1.8rem auto 2.5rem}
-.hero .label,.hero h1,.hero-sub{text-shadow:0 0 10px rgba(250,248,244,.95),0 0 22px rgba(250,248,244,.85),0 0 48px rgba(250,248,244,.7)}
-.scroll-cue{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
-.scroll-cue::after{content:"";display:block;width:1px;height:34px;margin:.6rem auto 0;background:linear-gradient(var(--gold),transparent);animation:cue 2.2s var(--ease) infinite;transform-origin:top}
+.hero h1 em{font-style:italic;font-weight:500;color:#D8B96A}
+.hero-sub{font-size:clamp(1.02rem,1.5vw,1.15rem);color:rgba(250,248,244,.72);max-width:54ch;margin:1.8rem auto 2.5rem}
+.hero .label,.hero h1,.hero-sub{text-shadow:0 2px 24px rgba(0,0,0,.6)}
+.scroll-cue{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);z-index:1;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,248,244,.6)}
+.scroll-cue::after{content:"";display:block;width:1px;height:34px;margin:.6rem auto 0;background:linear-gradient(#D8B96A,transparent);animation:cue 2.2s var(--ease) infinite;transform-origin:top}
 @keyframes cue{0%{transform:scaleY(0)}45%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
 
 /* ---------- Stats over fixed photo ---------- */
@@ -230,7 +252,7 @@ footer{background:var(--ink);color:var(--bg);padding:clamp(3.5rem,7vw,5rem) 0 2r
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="nav">
+<header class="nav" id="siteNav">
   <div class="wrap nav-inner">
     <a class="wordmark" href="#top" aria-label="Processa — home">Processa</a>
     <a class="btn btn-nav" href="#book">Book a call</a>
@@ -241,7 +263,11 @@ footer{background:var(--ink);color:var(--bg);padding:clamp(3.5rem,7vw,5rem) 0 2r
 
   <!-- Hero -->
   <section class="hero" id="top" aria-labelledby="hero-h">
-    <canvas id="orb" aria-hidden="true"></canvas>
+    <div class="blob-field" aria-hidden="true">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+      <span class="blob blob-3"></span>
+    </div>
     <div class="hero-veil" aria-hidden="true"></div>
     <div class="hero-inner">
       <span class="label reveal">Websites &amp; automation for growing businesses</span>
@@ -462,86 +488,16 @@ footer{background:var(--ink);color:var(--bg);padding:clamp(3.5rem,7vw,5rem) 0 2r
   'use strict';
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ================= 3D particle orb ================= */
-  var canvas = document.getElementById('orb');
-  var ctx = canvas.getContext('2d');
-  var DPR = Math.min(window.devicePixelRatio || 1, 2);
-  var points = [];
-  var angle = 1.2;
-  var rafId = null;
-  var heroVisible = true;
+  /* Hero blobs are pure CSS (animation + morphing border-radius), so there's
+     no JS driver needed here — prefers-reduced-motion is handled globally by
+     the animation-duration override at the top of the stylesheet. */
 
-  function buildOrb(){
-    points = [];
-    var i, n = 1800;
-    for(i = 0; i < n; i++){
-      var dx = Math.random() * 2 - 1, dy = Math.random() * 2 - 1, dz = Math.random() * 2 - 1;
-      var len = Math.sqrt(dx*dx + dy*dy + dz*dz) || 1;
-      dx /= len; dy /= len; dz /= len;
-      var r = 0.72 + Math.random() * 0.06;
-      points.push({ x: dx * r, y: dy * r, z: dz * r, g: Math.random() < 0.68 });
-    }
-  }
-
-  function sizeCanvas(){
-    var w = canvas.clientWidth, h = canvas.clientHeight;
-    canvas.width = Math.round(w * DPR);
-    canvas.height = Math.round(h * DPR);
-  }
-
-  function drawOrb(){
-    var w = canvas.width, h = canvas.height;
-    ctx.clearRect(0, 0, w, h);
-    var scale = Math.min(w, h) * 0.34;
-    var cx = w / 2, cy = h / 2;
-    var sinY = Math.sin(angle), cosY = Math.cos(angle);
-    var tilt = -0.32, sinX = Math.sin(tilt), cosX = Math.cos(tilt);
-    var fov = 3.2;
-    for(var i = 0; i < points.length; i++){
-      var pt = points[i];
-      var x = pt.x * cosY + pt.z * sinY;
-      var z = -pt.x * sinY + pt.z * cosY;
-      var y = pt.y * cosX - z * sinX;
-      z = pt.y * sinX + z * cosX;
-      var k = fov / (fov + z);
-      var sx = cx + x * scale * k;
-      var sy = cy - y * scale * k;
-      var depth = (1.4 - z) / 2.4;
-      var alpha = Math.max(0.06, Math.min(0.55, depth * 0.55));
-      ctx.fillStyle = pt.g
-        ? 'rgba(112,107,99,' + alpha + ')'
-        : 'rgba(82,78,72,' + (alpha * 0.65) + ')';
-      var r2 = Math.max(0.9, 2.0 * k) * DPR;
-      ctx.beginPath();
-      ctx.arc(sx, sy, r2, 0, 6.2832);
-      ctx.fill();
-    }
-  }
-
-  function loop(){
-    angle += 0.0038;
-    drawOrb();
-    rafId = requestAnimationFrame(loop);
-  }
-  function startOrb(){ if(rafId === null && !reduceMotion){ rafId = requestAnimationFrame(loop); } }
-  function stopOrb(){ if(rafId !== null){ cancelAnimationFrame(rafId); rafId = null; } }
-
-  buildOrb();
-  sizeCanvas();
-  drawOrb();
-  window.addEventListener('resize', function(){ sizeCanvas(); drawOrb(); });
-
-  if(!reduceMotion && 'IntersectionObserver' in window){
-    var heroObs = new IntersectionObserver(function(entries){
-      heroVisible = entries[0].isIntersecting;
-      if(heroVisible){ startOrb(); } else { stopOrb(); }
-    }, { threshold: 0.05 });
-    heroObs.observe(document.querySelector('.hero'));
-    document.addEventListener('visibilitychange', function(){
-      if(document.hidden){ stopOrb(); } else if(heroVisible){ startOrb(); }
-    });
-    startOrb();
-  }
+  /* Nav starts transparent over the dark hero, switches to the light frosted
+     bar (with dark text) once scrolled past it onto the cream sections. */
+  var siteNav = document.getElementById('siteNav');
+  window.addEventListener('scroll', function(){
+    siteNav.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.7);
+  });
 
   /* ================= Counters ================= */
   function formatNum(n){ return Math.round(n).toLocaleString('en-GB'); }
