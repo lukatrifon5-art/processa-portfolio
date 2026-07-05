@@ -75,45 +75,63 @@ section{scroll-margin-top:76px;position:relative}
    as one seamless blended shape, not three overlapping translucent dots.
    See the <svg><filter id="goo-filter"> defined once near the top of body. */
 .liquid-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.liquid{position:absolute;filter:url(#goo-filter);transition:transform .6s var(--ease)}
-.liquid .orb{position:absolute;border-radius:50%;will-change:transform;animation:orbFloat ease-in-out infinite}
+/* opacity sits on .liquid itself (applied to the already-filtered/merged result),
+   not on the individual orbs — the goo filter's alpha-contrast math needs full-
+   opacity orbs to merge cleanly; making the orbs themselves transparent would
+   feed it weaker alpha values and bring back visible seams between them. */
+.liquid{position:absolute;filter:url(#goo-filter);opacity:.82;transition:transform .6s var(--ease)}
+.liquid .orb{position:absolute;border-radius:50%;will-change:transform}
 /* Bigger + closer together than before (heavy overlap, not just touching), so the
-   goo filter always has generous surface area to fuse — no frame where two orbs
-   are just barely meeting and a "neck" is visible. Fewer orbs (3, not 4) too:
-   easier to keep permanently fused than four independently drifting circles. */
-.liquid .o1{width:70%;height:70%;top:6%;left:8%;animation-duration:14s}
-.liquid .o2{width:62%;height:62%;bottom:2%;right:2%;animation-duration:18s;animation-delay:-6s}
-.liquid .o3{width:52%;height:52%;top:24%;right:10%;animation-duration:12s;animation-delay:-3s}
+   goo filter always has generous surface area to fuse even with a much bigger
+   range of motion — no frame where two orbs are just barely meeting and a "neck"
+   is visible. Each orb gets its own path/duration/direction (not the same
+   keyframe with a timing offset) so the motion reads as loose and organic
+   instead of one shape breathing in and out on a single beat. */
+.liquid .o1{width:72%;height:72%;top:4%;left:6%;animation:orbFloat1 14s ease-in-out infinite}
+.liquid .o2{width:64%;height:64%;bottom:0;right:0;animation:orbFloat2 19s ease-in-out infinite;animation-delay:-7s}
+.liquid .o3{width:54%;height:54%;top:22%;right:8%;animation:orbFloat3 11s ease-in-out infinite;animation-delay:-4s}
 .liquid .o4{display:none}
-@keyframes orbFloat{
-  0%{transform:translate(0,14%) scale(1)}
-  50%{transform:translate(5%,-14%) scale(1.1)}
-  100%{transform:translate(0,14%) scale(1)}
+@keyframes orbFloat1{
+  0%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(10%,-20%) scale(1.12)}
+  66%{transform:translate(-14%,-6%) scale(.95)}
+  100%{transform:translate(0,0) scale(1)}
+}
+@keyframes orbFloat2{
+  0%{transform:translate(0,0) scale(1)}
+  40%{transform:translate(-12%,-16%) scale(1.08)}
+  75%{transform:translate(8%,10%) scale(.94)}
+  100%{transform:translate(0,0) scale(1)}
+}
+@keyframes orbFloat3{
+  0%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(-8%,18%) scale(1.15)}
+  100%{transform:translate(0,0) scale(1)}
 }
 /* Each orb keeps its own solid color — the goo filter's matrix passes R/G/B
    through unchanged (identity) and only sharpens the alpha channel, so colors
    survive the merge intact instead of washing out to white or gray. */
 .liquid .glint{position:absolute;top:10%;left:16%;width:20%;height:14%;border-radius:50%;background:radial-gradient(ellipse at center, rgba(255,255,255,.95), rgba(255,255,255,0) 72%);filter:blur(1px);z-index:2}
 
-.liquid-purple .o1{background:radial-gradient(circle at 35% 30%,#c391ff,#8b4bff 65%)}
-.liquid-purple .o2{background:radial-gradient(circle at 35% 30%,#ff8fc9,#ff4dab 65%)}
-.liquid-purple .o3{background:radial-gradient(circle at 35% 30%,#aef5e8,#7ff0dd 65%)}
-.liquid-purple .o4{background:radial-gradient(circle at 35% 30%,#c391ff,#5b2fd6 65%)}
+/* Each variant uses 3 *analogous* hues (adjacent on the color wheel, bridged
+   through magenta/indigo) instead of jumping straight between opposite hues
+   (e.g. orange next to cyan) — direct complementary colors blur into a muddy
+   brown/gray at the overlap, analogous ones blend into a clean gradient. */
+.liquid-purple .o1{background:radial-gradient(circle at 35% 30%,#c391ff,#8b4bff 70%)}
+.liquid-purple .o2{background:radial-gradient(circle at 35% 30%,#ff9ad1,#e94fa3 70%)}
+.liquid-purple .o3{background:radial-gradient(circle at 35% 30%,#8fa8ff,#4f5ee9 70%)}
 
-.liquid-teal .o1{background:radial-gradient(circle at 35% 30%,#aef5e8,#5eead4 65%)}
-.liquid-teal .o2{background:radial-gradient(circle at 35% 30%,#8fb8ff,#3b82f6 65%)}
-.liquid-teal .o3{background:radial-gradient(circle at 35% 30%,#e3c9ff,#c084fc 65%)}
-.liquid-teal .o4{background:radial-gradient(circle at 35% 30%,#aef5e8,#2fa393 65%)}
+.liquid-teal .o1{background:radial-gradient(circle at 35% 30%,#8ff2e0,#2fc9ac 70%)}
+.liquid-teal .o2{background:radial-gradient(circle at 35% 30%,#8fc4ff,#3b82f6 70%)}
+.liquid-teal .o3{background:radial-gradient(circle at 35% 30%,#c8a8ff,#8b4bff 70%)}
 
-.liquid-rose .o1{background:radial-gradient(circle at 35% 30%,#ff8fc9,#ff4dab 65%)}
-.liquid-rose .o2{background:radial-gradient(circle at 35% 30%,#c391ff,#8b4bff 65%)}
-.liquid-rose .o3{background:radial-gradient(circle at 35% 30%,#aef5e8,#5eead4 65%)}
-.liquid-rose .o4{background:radial-gradient(circle at 35% 30%,#ff8fc9,#c2185b 65%)}
+.liquid-rose .o1{background:radial-gradient(circle at 35% 30%,#ff9ad1,#e94fa3 70%)}
+.liquid-rose .o2{background:radial-gradient(circle at 35% 30%,#c391ff,#8b4bff 70%)}
+.liquid-rose .o3{background:radial-gradient(circle at 35% 30%,#8fa8ff,#4f5ee9 70%)}
 
-.liquid-orange .o1{background:radial-gradient(circle at 35% 30%,#ffab7a,#ff5722 65%)}
-.liquid-orange .o2{background:radial-gradient(circle at 35% 30%,#8fb8ff,#3b82f6 65%)}
-.liquid-orange .o3{background:radial-gradient(circle at 35% 30%,#aef5e8,#5eead4 65%)}
-.liquid-orange .o4{background:radial-gradient(circle at 35% 30%,#ff8a8a,#ff2d55 65%)}
+.liquid-orange .o1{background:radial-gradient(circle at 35% 30%,#ffb37a,#ff6a3d 70%)}
+.liquid-orange .o2{background:radial-gradient(circle at 35% 30%,#ff8fae,#ef4470 70%)}
+.liquid-orange .o3{background:radial-gradient(circle at 35% 30%,#c391ff,#8b4bff 70%)}
 
 @keyframes blobIntro{from{opacity:0;transform:scale(.6) rotate(-20deg)}to{opacity:1;transform:scale(1) rotate(0deg)}}
 .liquid-layer{animation:blobIntro 1.4s var(--ease) both}
