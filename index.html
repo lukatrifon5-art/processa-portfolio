@@ -77,14 +77,18 @@ section{scroll-margin-top:76px;position:relative}
 .liquid-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .liquid{position:absolute;filter:url(#goo-filter);transition:transform .6s var(--ease)}
 .liquid .orb{position:absolute;border-radius:50%;will-change:transform;animation:orbFloat ease-in-out infinite}
-.liquid .o1{width:56%;height:56%;top:6%;left:8%;animation-duration:13s}
-.liquid .o2{width:48%;height:48%;bottom:4%;right:6%;animation-duration:17s;animation-delay:-6s}
-.liquid .o3{width:40%;height:40%;top:32%;right:14%;animation-duration:11s;animation-delay:-3s}
-.liquid .o4{width:34%;height:34%;bottom:22%;left:16%;animation-duration:15s;animation-delay:-9s}
+/* Bigger + closer together than before (heavy overlap, not just touching), so the
+   goo filter always has generous surface area to fuse — no frame where two orbs
+   are just barely meeting and a "neck" is visible. Fewer orbs (3, not 4) too:
+   easier to keep permanently fused than four independently drifting circles. */
+.liquid .o1{width:70%;height:70%;top:6%;left:8%;animation-duration:14s}
+.liquid .o2{width:62%;height:62%;bottom:2%;right:2%;animation-duration:18s;animation-delay:-6s}
+.liquid .o3{width:52%;height:52%;top:24%;right:10%;animation-duration:12s;animation-delay:-3s}
+.liquid .o4{display:none}
 @keyframes orbFloat{
-  0%{transform:translate(0,18%) scale(1)}
-  50%{transform:translate(6%,-18%) scale(1.12)}
-  100%{transform:translate(0,18%) scale(1)}
+  0%{transform:translate(0,14%) scale(1)}
+  50%{transform:translate(5%,-14%) scale(1.1)}
+  100%{transform:translate(0,14%) scale(1)}
 }
 /* Each orb keeps its own solid color — the goo filter's matrix passes R/G/B
    through unchanged (identity) and only sharpens the alpha channel, so colors
@@ -181,6 +185,15 @@ section{scroll-margin-top:76px;position:relative}
 .service-card .liquid-layer{opacity:.32}
 .service-card.has-blob::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,17,17,.25),rgba(17,17,17,.85) 55%);z-index:1;pointer-events:none}
 .card-blob{width:140%;height:140%;top:-30%;right:-30%}
+
+/* Ambient corner blobs — scattered further down the page so the liquid motif
+   keeps showing up as you scroll, not just in the hero. Small, low-opacity,
+   tucked into a corner so they read as atmosphere, not competing with content. */
+.ambient-blob{opacity:.35;width:34vw;height:34vw;max-width:360px;max-height:360px;inset:auto}
+.ambient-blob .liquid{width:100%;height:100%;top:0;left:0}
+.ab-1{bottom:-12%;right:-8%}
+.ab-2{top:-6%;left:-8%}
+@media(max-width:760px){.ambient-blob{display:none}}
 .service-card > *:not(.liquid-layer){position:relative;z-index:2}
 .service-card:hover{transform:translateY(-8px);border-color:rgba(192,132,252,.4)}
 .service-icon{width:44px;height:44px;border-radius:10px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;margin-bottom:1.4rem}
@@ -280,8 +293,8 @@ body.menu-open{overflow:hidden}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <filter id="goo-filter">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur"/>
-      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -11" result="goo"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur"/>
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 30 -15" result="goo"/>
     </filter>
   </defs>
 </svg>
@@ -366,6 +379,7 @@ body.menu-open{overflow:hidden}
   <!-- Services -->
   <section class="section bordered" id="services">
     <span class="ghost-text" aria-hidden="true">SERVICES</span>
+    <div class="liquid-layer ambient-blob ab-1" aria-hidden="true"><span class="liquid liquid-teal"><i class="orb o1" aria-hidden="true"></i><i class="orb o2" aria-hidden="true"></i><i class="orb o3" aria-hidden="true"></i><i class="orb o4" aria-hidden="true"></i><i class="glint" aria-hidden="true"></i></span></div>
     <div class="wrap">
       <div class="section-head reveal">
         <span class="label">What I do</span>
@@ -406,6 +420,7 @@ body.menu-open{overflow:hidden}
   <!-- Process -->
   <section class="section bordered" id="process">
     <span class="ghost-text" aria-hidden="true">PROCESS</span>
+    <div class="liquid-layer ambient-blob ab-2" aria-hidden="true"><span class="liquid liquid-rose"><i class="orb o1" aria-hidden="true"></i><i class="orb o2" aria-hidden="true"></i><i class="orb o3" aria-hidden="true"></i><i class="orb o4" aria-hidden="true"></i><i class="glint" aria-hidden="true"></i></span></div>
     <div class="wrap">
       <div class="section-head reveal">
         <span class="label">How it works</span>
@@ -468,9 +483,6 @@ body.menu-open{overflow:hidden}
   <!-- Stack -->
   <section class="section bordered">
     <div class="wrap">
-      <div class="section-head reveal" style="margin-inline:auto;text-align:center">
-        <span class="label">Built with</span>
-      </div>
       <div class="stack-strip reveal">
         <span class="stack-pill">HTML / CSS / JS</span>
         <span class="stack-pill">Vercel</span>
